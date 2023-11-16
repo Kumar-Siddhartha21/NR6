@@ -1,26 +1,33 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
-  const [listOfRestaurant, setListOfRestaurant] = useState(resList);
- 
- 
+  const [listOfRestaurant, setListOfRestaurant] = useState([]);
+
   useEffect(() => {
-    
     fetchData();
-    console.log("UseEffect Called");
   }, []);
 
-const fetchData= async() =>{
-  const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=22.4696435&lng=88.3961473");
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/mapi/homepage/getCards?lat=22.4696435&lng=88.3961473"
+    );
 
-  const json = await data.json();
-  console.log(json)
-}
+    const json = await data.json();
+    
+    setListOfRestaurant(
+      json?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+  };
+
+  // if (listOfRestaurant.length === 0) {
+  //   return <h1> <Shimmer/> </h1>;
+  // }
 
 
-  return (
+  return  listOfRestaurant.length === 0? <Shimmer/> : (
     <div className="body">
       <div className="Search">
         <button
