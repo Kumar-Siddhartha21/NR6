@@ -17,7 +17,7 @@ const Body = () => {
     const json = await data.json();
     
     setListOfRestaurant(
-      json?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle
+      json?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle
         ?.restaurants
     );
   };

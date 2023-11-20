@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 
 const Header = () => {
-  const [btnName, setBtnName] = useState("login");
+  const [btnName, setBtnName] = useState("Login");
 
   const buttonChangehandler = () => {
     if (btnName === "login") {
