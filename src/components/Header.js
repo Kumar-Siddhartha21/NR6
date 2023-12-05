@@ -4,6 +4,7 @@ import React, { useState } from "react";
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
 
+<<<<<<< HEAD
   // const buttonChangehandler = () => {
   //   if (btnName === "login") {
   //     setBtnName("logout");
@@ -12,6 +13,18 @@ const Header = () => {
   //   }
   //   console.log(btnName);
   // };
+=======
+  const buttonChangehandler = () => {
+    // if (btnName === "Login") {
+    //   setBtnName("Logout");
+    // } else if (btnName === "Logout") {
+    //   setBtnName("Login");
+    // }
+
+    btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
+    console.log(btnName);
+  };
+>>>>>>> ebf4bc04735a35ed99a9b2fabb2d36e0cc48a689
 
   return (
     <div className="header">
