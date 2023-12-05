@@ -36,5 +36,11 @@ code {
   height: 50px;
   width: 70px;
   cursor: pointer;
+  color: black;
  
+}
+
+
+.filter{
+  display: flex;
 }
