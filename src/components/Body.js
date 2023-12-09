@@ -12,13 +12,12 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/mapi/homepage/getCards?lat=22.4696435&lng=88.3961473"
-    );
+      "https://www.swiggy.com/mapi/homepage/getCards?lat=22.4919045&lng=88.38562879999999"
+    ) ;
 
     const json = await data.json();
     setListOfRestaurant(
-      json?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle
-        ?.restaurants
+      json?.data?.success?.cards[1]?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
@@ -32,12 +31,21 @@ const Body = () => {
     <div className="body">
       <div className="filter">
         <div className="search">
-        
-          <input type="text" className="search-box" value={searchText} onChange={(e)=>{searchText(e.target.value)}} />
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
           <button
             onClick={() => {
               console.log(searchText);
+              const filteredRestaurant = listOfRestaurant.filter((res)=>res.data.name === searchText);
+              setListOfRestaurant(filteredRestaurant);
             }}
+            
           >
             Search
           </button>
@@ -64,6 +72,3 @@ const Body = () => {
 };
 
 export default Body;
-
-
-
