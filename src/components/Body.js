@@ -12,13 +12,12 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/mapi/homepage/getCards?lat=22.4919045&lng=88.38562879999999"
-    ) ;
-
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.4756738&lng=88.4034229&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
     const json = await data.json();
     setListOfRestaurant(
-      json?.data?.success?.cards[1]?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    console.log(setListOfRestaurant)
   };
 
   // if (listOfRestaurant.length === 0) {
