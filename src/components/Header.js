@@ -14,12 +14,13 @@ const Header = () => {
   // };
 
   const buttonChangehandler = () => {
+   
     // if (btnName === "Login") {
     //   setBtnName("Logout");
     // } else if (btnName === "Logout") {
     //   setBtnName("Login");
     // }
-
+   
     btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
     console.log(btnName);
   };

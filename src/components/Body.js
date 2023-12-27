@@ -4,6 +4,8 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [filteredRestaurant, setFilteredResturant] = useState([]);
+
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
@@ -12,12 +14,17 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.4756738&lng=88.4034229&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTINGs")
-    const json = await data.json();
-    setListOfRestaurant(
-      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      "https://www.swiggy.com/mapi/homepage/getCards?lat=22.4919045&lng=88.38562879999999"
     );
-    console.log(setListOfRestaurant)
+    const json = await data.json();
+
+    setListOfRestaurant(
+      json?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle
+        ?.restaurants);
+    setFilteredResturant(
+      json?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle
+        ?.restaurants);
+
   };
 
   // if (listOfRestaurant.length === 0) {
@@ -41,10 +48,11 @@ const Body = () => {
           <button
             onClick={() => {
               console.log(searchText);
-              const filteredRestaurant = listOfRestaurant.filter((res)=>res.data.name === searchText);
-              setListOfRestaurant(filteredRestaurant);
+              const filteredRestaurant = listOfRestaurant.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFilteredResturant(filteredRestaurant);
             }}
-            
           >
             Search
           </button>
@@ -62,7 +70,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurant.map((restaurant) => (
+        {filteredRestaurant.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
