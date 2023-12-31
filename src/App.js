@@ -1,13 +1,20 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom"; 
 import "./App.css";
-import Header from "./components/Header";
 import Body from "./components/Body";
-//Episode 7 Started
-function App() {
+import About from "./components/About";
+import Header from "./components/Header";
+
+
+// Episode 7 Started
+function App() { 
   return (
-    <div className="App">
-      <Header />
-      <Body />
+    <div>
+    <Header/>
+    <Routes>
+      <Route path="/" element={<Body />} /> 
+      <Route path="/About" element={<About />} />
+    </Routes>
     </div>
   );
 }
