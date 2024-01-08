@@ -9,21 +9,33 @@ import "./index.css";
 import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import Body from "./components/Body";
+import About from "./components/About";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-   path: "/ContactUs",
-   element: <ContactUs/>
-  },
-  {
-   path: '*',
-   element : <Error />,
-   errorElement: <Error/>
+    children:[
+      {
+        path: "/",
+        element: <Body/>
+       },
+      {
+        path: "/ContactUs",
+        element: <ContactUs/>
+       },
+       {
+         path: '/about',
+         element : <About />
+       },
+       {
+        path: '*',
+        element : <Error />,
+        errorElement: <Error/>
+       }
+    ]
   }
+ 
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
